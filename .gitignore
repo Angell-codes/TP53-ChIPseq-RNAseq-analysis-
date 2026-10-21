@@ -1,0 +1,11 @@
+*.bigWig
+*.bw
+*.bed
+*.gtf
+*.fa
+*.fasta
+*.gz
+fimo_out/
+scanned.genome
+.ipynb_checkpoints/
+!data/scanned_regions.bed

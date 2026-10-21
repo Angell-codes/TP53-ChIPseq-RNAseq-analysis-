@@ -1,0 +1,13 @@
+Gene Symbol,WT_Ctrl,WT_AMO,MT_Ctrl,MT_AMO,bound,strong_bound
+BAX,0.12,0.71,-0.04,0.5,True,True
+BBC3,1.52,1.88,1.41,1.36,True,True
+CDKN1A,2.55,2.93,2.37,2.5,True,True
+DDB2,0.4,0.49,0.69,0.62,True,True
+FAS,1.83,0.68,0.67,0.61,False,False
+GADD45A,2.03,2.16,0.16,1.69,True,False
+MDM2,1.56,1.57,0.53,1.16,True,True
+PMAIP1,1.12,1.06,0.36,0.83,True,False
+SESN1,2.14,1.84,0.88,1.1,True,True
+TNFRSF10B,1.34,0.87,0.28,1.03,True,True
+TP53INP1,1.67,1.69,0.08,0.34,True,False
+ZMAT3,0.88,0.91,0.71,0.68,True,False
