@@ -99,3 +99,5 @@ p53, the protein, recognizes a motif (binding sequence) that tells it where to b
 - Enrichr: Chen EY, et al. *BMC Bioinformatics* 2013;14:128. Kuleshov MV, et al. *Nucleic Acids Res* 2016;44(W1):W90–W97. Xie Z, et al. *Curr Protoc* 2021;1(3):e90.
 - gseapy: Fang Z, Liu X, Peltz G. GSEApy: a comprehensive package for performing gene set enrichment analysis in Python. *Bioinformatics* 2023;39(1):btac757.
 - Gene-set libraries used: MSigDB Hallmark 2020 (Liberzon A, et al. *Cell Syst* 2015;1(6):417–425), KEGG 2021 Human (Kanehisa M, Goto S. *Nucleic Acids Res* 2000;28(1):27–30), GO Biological Process 2023 (Ashburner M, et al. *Nat Genet* 2000;25:25–29).
+
+I used Claude, an AI assistant, to help debug the code and review my notes. I wrote the write-up myself and ran every step. Details are in REPORT.md.
