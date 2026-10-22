@@ -92,8 +92,6 @@ These results are consistent with the idea that binding alone does not strongly 
 - **Enrichr background.** Enrichr compares against all genes in each library, not only the genes expressed in these cells, so the enrichment p-values may look stronger than they would with a matched background.
 - **Small checks.** The known-target analysis uses only 12 genes chosen from prior knowledge, so it is a sanity check, not independent validation. The empirical p-values from 100 shuffles can't go below about 0.0099.
 
-## My journey through fixing errors:
-
 ## What I learnt:
 - **Environment**: I learned how to build a Miniconda environment, install the relevant packages and use Jupyter Notebook for genomic analysis, beyond my usual use for data science. I found that Windows could not run **pybedtools** and **pyBigWig**, so I learned to **check platform support** and to **keep tools in separate environments** (Python in `genomics`, FIMO in `meme_env`).
 - **Empty "Unnamed" columns in the library-size plot**: the count file had trailing empty columns, which I removed with `dropna`. It is a common step but an important one: **clean the data after loading it**.
