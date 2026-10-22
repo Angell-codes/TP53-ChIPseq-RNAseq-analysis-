@@ -159,5 +159,5 @@ These results are consistent with the idea that binding alone does not strongly 
 - gseapy: Fang Z, Liu X, Peltz G. GSEApy: a comprehensive package for performing gene set enrichment analysis in Python. *Bioinformatics* 2023;39(1):btac757.
 - Gene-set libraries used: MSigDB Hallmark 2020 (Liberzon A, et al. *Cell Syst* 2015;1(6):417–425), KEGG 2021 Human (Kanehisa M, Goto S. *Nucleic Acids Res* 2000;28(1):27–30), GO Biological Process 2023 (Ashburner M, et al. *Nat Genet* 2000;25:25–29).
 
-**AI assistance**:
+## AI assistance:
 I used Claude, an AI assistant, to help debug the code and review my notes. I wrote the write-up myself and ran every step. 
