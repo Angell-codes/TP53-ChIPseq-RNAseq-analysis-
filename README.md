@@ -112,9 +112,10 @@ These results are consistent with the idea that binding alone does not strongly 
 ### Input data
 - **TP53 ChIP-seq peaks**: `GSE176658_ENCFF041VRQ_IDR_ranked_peaks_GRCh38.bed` (GEO GSE176658, ENCODE file ENCFF041VRQ). Binding peaks, GRCh38.
 - **TP53 ChIP-seq signal**: `GSE176658_ENCFF608GZS_signal_p-value_GRCh38.bigWig` (GEO GSE176658, ENCODE file ENCFF608GZS). Signal (−log10 p-value) track, GRCh38.
-- **RNA-seq counts**: GEO GSE274604, [exact file name]. 8 samples: WT/MT, control/AMO, DMSO/DOXO. Raw count matrix, which I normalised in the notebook.
+- **RNA-seq counts**: GEO GSE274604, `GSE274604_count.txt`. 8 samples: WT/MT, control/AMO, DMSO/DOXO. Raw count matrix, which I normalised in the notebook.
+- **Gene annotation for the analysis**: `gencode.v38.annotation.gtf` (GENCODE v38). Used for gene positions, TSS and promoters (TSS ±2 kb)., DMSO/DOXO. Raw count matrix, which I normalised in the notebook.
 - **TP53 motif**: JASPAR MA0106.1 (`MA0106.1.pfm`, converted to `TP53.meme`).
-- **Gene annotation for the analysis**: [GENCODE v38 GTF file name]. Used for gene positions, TSS and promoters (TSS ±2 kb).
+
 
 ### Reference files used to build the FIMO input
 - `genome.fa`: human reference genome sequence, Ensembl release 110, GRCh38 primary assembly.
@@ -160,4 +161,5 @@ These results are consistent with the idea that binding alone does not strongly 
 - gseapy: Fang Z, Liu X, Peltz G. GSEApy: a comprehensive package for performing gene set enrichment analysis in Python. *Bioinformatics* 2023;39(1):btac757.
 - Gene-set libraries used: MSigDB Hallmark 2020 (Liberzon A, et al. *Cell Syst* 2015;1(6):417–425), KEGG 2021 Human (Kanehisa M, Goto S. *Nucleic Acids Res* 2000;28(1):27–30), GO Biological Process 2023 (Ashburner M, et al. *Nat Genet* 2000;25:25–29).
 
-I used Claude, an AI assistant, to help debug the code and review my notes. I wrote the write-up myself and ran every step. Details are in REPORT.md.
+**AI assistance**:
+I used Claude, an AI assistant, to help debug the code and review my notes. I wrote the write-up myself and ran every step. 
