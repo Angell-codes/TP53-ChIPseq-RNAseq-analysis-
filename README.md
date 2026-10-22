@@ -92,11 +92,20 @@ These results are consistent with the idea that binding alone does not strongly 
 - **Enrichr background.** Enrichr compares against all genes in each library, not only the genes expressed in these cells, so the enrichment p-values may look stronger than they would with a matched background.
 - **Small checks.** The known-target analysis uses only 12 genes chosen from prior knowledge, so it is a sanity check, not independent validation. The empirical p-values from 100 shuffles can't go below about 0.0099.
 
+## My journey through fixing errors:
+
 ## What I learnt:
-- **Environment**: I learned how to build a mini anaconda environemt, download relevant packages and utilize jupyter notebook for genomic analysis over my usual use for data science. Creating a kernel only for the genomics and importing its required tools, along with importing tools required for stats and analysis like pandas, numpy, seaborn, skicit.
-- **Empty unnamed columns in the library-size plot**-
-the count file had trailing empty columns. used a function (dropna). A common step but a very important one: cleaning the data before loading it.
-- **
+- **Environment**: I learned how to build a Miniconda environment, install the relevant packages and use Jupyter Notebook for genomic analysis, beyond my usual use for data science. I found that Windows could not run **pybedtools** and **pyBigWig**, so I learned to **check platform support** and to **keep tools in separate environments** (Python in `genomics`, FIMO in `meme_env`).
+- **Empty "Unnamed" columns in the library-size plot**: the count file had trailing empty columns, which I removed with `dropna`. It is a common step but an important one: **clean the data after loading it**.
+- **Confounder**: strongly bound genes looked less induced because they were already highly expressed, so they have less room to double. The **confounding effect hid the effect of binding**: the odds ratio (OR) was below 1, which suggested the strongly bound group was induced less often. After restricting to genes with similar expression (≥ 50 and ≥ 200), the OR moved above 1.
+- **Statistics**: the **Mann-Whitney test** compares the bound and unbound groups using a number (log2FC) and does not assume the values follow a bell curve. A **small p-value does not necessarily mean a big effect**: MT_Ctrl has p = 8.8e-38, but both medians are about 0. The p-value shows that the groups differ but does not quantify the difference. For the size of the difference, I have to look at the medians, the boxplots and the OR. So when reporting significance, **effect size should be reported too**.
+- **Honest limits**:
+  - **No replicates:** there is one sample per condition, so I can't separate a real change from random variation.
+  - **Different experiments:** the ChIP-seq and RNA-seq data come from different experiments and are joined only through gene names.
+  - **What I can claim:** the peaks contain the TP53 motif more than random DNA, the bound-and-induced genes are enriched for the p53 pathway, and the pattern is consistent with p53 acting as an activator.
+  - **Controls**: a control must come from the same space as what you test. My first enrichment (1.8x and 11.5x) was inflated because the random regions included DNA that FIMO never scanned. With a matched control it became 1.5x and 8.7x
+  - **Correlation is not causation.**
+
 
 ## Data and References
 
