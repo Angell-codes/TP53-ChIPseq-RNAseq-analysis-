@@ -47,6 +47,57 @@ p53, the protein, recognizes a motif (binding sequence) that tells it where to b
 9. Run pathway enrichment on the bound and induced genes
 10. Check known p53 target (e.g, CDKN1A)
 
+## Results 
+
+1. 74,344 peaks and 16,415 bound genes (47% expressed genes):
+A peak is where the ChIP-seq found a lot of DNA fragments pulled down by the antibody. Suggesting TP53 was previously bound to that fragment. 
+Since most of the genes have a peak approximately within 2kb of their start site, we cannot use peak alone as a sign of real regulatory target. 
+
+2. Motif enrichment: 1.5x overall, 8.7x in the top 1000 peaks:
+We checked if the peaks contain the TP53 binding sequence more often than random DNA.
+Random DNA was made by shuffling the peaks within the specific scanned regions 100 times. 
+The results showed that this is true to a certain extent (0.69% vs 0.47%).  In the strongest peaks, the claim is string- 4.30% vs 0.50%.
+The effect gets weaker as weaker peaks are added, which technically just act like noisy data. 
+Hence, the stronger the binding signal, the more likely the peak is a direct motif-driven binding site 
+
+3. 504 bound genes and induced genes:
+We took genes with tp53 peaks that go a minimum 2-fold with doxorubicin in normal cells. E
+Enrichr asks which known pathways do these 504 genes belong to? 
+The top hit is the p53 pathway, with TNF-alpha/NF-kB signalling next. So the genes we have may play a role in stopping cell cycle, repair DNA or trigger cell death. 
+The results may look stronger technically, however in reality it may not be the same. This is because an enrichr has a library of genes which also include beyond just expressed ones. 
+
+4. Bound vs Unbound Gene(Mann-Whitney):
+The test asks whether the distribution of bound vs unbound genes differ
+In WT_Ctrl and MT_Ctrl they do - p=1.5e-04 and 8.8e-38)
+The box plot helps us visualize the difference better 
+
+5. Does strong binding predict induction?: 
+Initially, strongly bound genes were induced less often than other genes. Strongly bound genes were induced less often , about 0.4-0.5. This was because there were highly expressed genes already present (median 331 vs 56) and hence, there was lesser room to grow. Very active genes are less likely to double. At similar expression levels, the association turns positive where the Odds Ratio goes up to 3.6 at expression >=200. This is only for MT_AMO(p = 0.025). The link is weak, so the promoter binding only does not predict induction. 
+
+6. Known targets - CDKN1A about 2.5log2FC. Medians of 1.54/1.32/0.60/0.93
+CDKN1A (p21), MDM2 and BAX are very common p53 targets, and go up in numbers in normal cells with doxorubicin. 
+In the mutant cells of K120R, the response is weaker (median 0.60 vs 1.54) which is consistent with that mutation damaging p53’s function 
+The AMO (splicing correction treatment) revives the media bringing it back partly to 0.93. 
+CDKN1A  was still induced in the mutant cells in my data. 
+These results are consistent with the idea that binding alone does not strongly predict which genes respond.
+
+### Limitations
+
+- **No replicates in the RNA-seq.** Each condition has one sample (8 samples in total), so I could not do a formal differential-expression test such as DESeq2. The log2 fold changes are descriptive, and the "induced" threshold (log2FC ≥ 1) is a cutoff, not a statistical test.
+- **ChIP-seq and RNA-seq come from different experiments.** The ChIP-seq (GSE176658) is from A549 cells, and the RNA-seq (GSE274604) is from a separate study of the K120R mutation. They are linked only through gene names, so "bound" and "induced" don't come from the same cells.
+- **The motif scan covers about 58.5% of the genome.** FIMO scanned whole genes plus 1 kb (`promoters.fa`), not the full genome. For fairness I restricted the peaks and the shuffled controls to the scanned regions. Peaks outside them were left out of the motif analysis. The extra 1 kb was added on the left of every gene regardless of strand.
+- **Two different gene annotations.** The FIMO input was built from Ensembl release 110, and the notebook's gene analysis uses GENCODE v38. A few genes may differ between them.
+- **Fixed promoter window.** Promoters were defined as TSS ±2 kb, and I did not test other window sizes. Binding far from the start site (enhancers) is not counted as promoter binding.
+- **Motif version.** I used JASPAR MA0106.1. Newer versions of the TP53 matrix exist and might give different hits.
+- **Enrichr background.** Enrichr compares against all genes in each library, not only the genes expressed in these cells, so the enrichment p-values may look stronger than they would with a matched background.
+- **Small checks.** The known-target analysis uses only 12 genes chosen from prior knowledge, so it is a sanity check, not independent validation. The empirical p-values from 100 shuffles can't go below about 0.0099.
+
+## What I learnt:
+- **Environment**: I learned how to build a mini anaconda environemt, download relevant packages and utilize jupyter notebook for genomic analysis over my usual use for data science. Creating a kernel only for the genomics and importing its required tools, along with importing tools required for stats and analysis like pandas, numpy, seaborn, skicit.
+- **Empty unnamed columns in the library-size plot**-
+the count file had trailing empty columns. used a function (dropna). A common step but a very important one: cleaning the data before loading it.
+- **
+
 ## Data and References
 
 ### Input data
